@@ -1,0 +1,39 @@
+{
+	"name": "pyspark",
+	"properties": {
+		"activities": [
+			{
+				"name": "allNotebooks",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/myProject/master-pipeline",
+					"baseParameters": {
+						"layer_path": {
+							"value": "@pipeline().parameters.layer_path",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"layer_path": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

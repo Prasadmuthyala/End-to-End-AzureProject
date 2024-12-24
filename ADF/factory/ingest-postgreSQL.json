@@ -1,0 +1,9 @@
+{
+	"name": "ingest-postgreSQL",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a738cb1b-8252-435b-a306-e20a1a87fe5f",
+		"tenantId": "801b02cf-14da-4535-ad41-7734cb521e7a"
+	}
+}

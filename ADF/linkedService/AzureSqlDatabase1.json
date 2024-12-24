@@ -1,0 +1,23 @@
+{
+	"name": "AzureSqlDatabase1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "mysqlserver123123.database.windows.net",
+			"database": "mySQLDB",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "myusername",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault2forADB",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "mysqldb"
+			}
+		}
+	}
+}

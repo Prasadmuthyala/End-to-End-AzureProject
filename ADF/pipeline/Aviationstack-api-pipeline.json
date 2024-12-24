@@ -1,0 +1,96 @@
+{
+	"name": "Aviationstack-api-pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "flights",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "get-api-key-from-key-vault",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"overwrite": true
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "apiinputdataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"AccessKey": {
+								"value": "@activity('get-api-key-from-key-vault').output.value",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "apioutput",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "get-api-key-from-key-vault",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://postgressql.vault.azure.net/secrets/aviationstack-api-key/dffd9f0f081941a39c9f197b29ac50fe?api-version=7.0",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			}
+		],
+		"variables": {
+			"kk": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-12-17T15:29:03Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

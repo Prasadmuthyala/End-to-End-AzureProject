@@ -1,0 +1,33 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "master-pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-12-21T13:11:00",
+				"endTime": "2024-12-31T13:11:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						43
+					],
+					"hours": [
+						18
+					]
+				}
+			}
+		}
+	}
+}

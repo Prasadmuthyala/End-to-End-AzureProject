@@ -1,0 +1,24 @@
+{
+	"name": "apioutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(formatDateTime(utcNow(),'yyyy-MM-dd'),'/','JSON-',utcNow())",
+					"type": "Expression"
+				},
+				"folderPath": "Api-response-raw",
+				"fileSystem": "bronzelayer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

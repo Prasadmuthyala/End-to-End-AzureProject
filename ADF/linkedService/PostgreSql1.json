@@ -1,0 +1,29 @@
+{
+	"name": "PostgreSql1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PostgreSqlV2",
+		"typeProperties": {
+			"server": "127.0.0.1",
+			"port": 5432,
+			"database": "postgres",
+			"username": "postgres",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "postgreSQLpassword",
+				"secretVersion": "571e66c3120b414a9783c2c329739838"
+			},
+			"sslMode": 2,
+			"authenticationType": "Basic"
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeForPostgreSQL",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
