@@ -51,6 +51,9 @@ The solution also leverages **Azure Logic Apps** to send **email notifications**
 
 ## Data Pipeline Architecture
 
+![diagram-export-12-25-2024-10_35_26-AM](https://github.com/user-attachments/assets/57b36917-bf27-413a-bddc-f15f69f0a138)
+
+
 The project follows the **Medallion Architecture**, a multi-layer data architecture that allows for scalable and structured data processing.
 
 1. **Bronze Layer (Raw Data)**: 
